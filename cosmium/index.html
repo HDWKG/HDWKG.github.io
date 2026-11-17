@@ -3,93 +3,193 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cosmium</title>
-<meta name="description" content="Cosmium: a free Magic: The Gathering deck builder, collection tracker, card search and life counter.">
+<title>Cosmium · Magic: The Gathering deck builder and collection tracker</title>
+<meta name="description" content="Cosmium is a free Magic: The Gathering app for Android and Windows: deck builder, collection tracker, card scanner, card search, playtester and life counter. No ads, no account needed.">
+<meta property="og:title" content="Cosmium">
+<meta property="og:description" content="A free Magic: The Gathering deck builder, collection tracker, card scanner and life counter for Android and Windows.">
+<meta property="og:image" content="https://hdwkg.github.io/cosmium/logo.png">
+<meta name="theme-color" content="#0f0b1e">
+<link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL@24,500,0..1&display=block">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<main>
-  <header>
-    <svg viewBox="0 0 200 200" role="img" aria-label="Cosmium logo: a round vault door with a four-point star">
-      <g fill="#E8B44A">
-        <rect x="93" y="2" width="14" height="18" rx="4"/>
-        <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(45 100 100)"/>
-        <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(90 100 100)"/>
-        <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(135 100 100)"/>
-        <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(180 100 100)"/>
-        <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(225 100 100)"/>
-        <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(270 100 100)"/>
-        <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(315 100 100)"/>
+<body class="landing">
+
+<div class="sky" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="./">
+    <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#logo"/></svg>
+    Cosmium
+  </a>
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#data">Your data</a>
+    <a class="pill" href="#download">Download</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <svg class="hero-logo" viewBox="0 0 200 200" role="img" aria-label="Cosmium logo">
+    <defs>
+      <g id="logo">
+        <g fill="#E8B44A">
+          <rect x="93" y="2" width="14" height="18" rx="4"/>
+          <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(45 100 100)"/>
+          <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(90 100 100)"/>
+          <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(135 100 100)"/>
+          <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(180 100 100)"/>
+          <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(225 100 100)"/>
+          <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(270 100 100)"/>
+          <rect x="93" y="2" width="14" height="18" rx="4" transform="rotate(315 100 100)"/>
+        </g>
+        <circle cx="100" cy="100" r="82" fill="#18123A" stroke="#E8B44A" stroke-width="10"/>
+        <path d="M100 52 C103 90 110 97 148 100 C110 103 103 110 100 148 C97 110 90 103 52 100 C90 97 97 90 100 52 Z" fill="#F6D57E"/>
+        <circle cx="134" cy="66" r="5" fill="#B9A6FF"/>
+        <circle cx="68" cy="136" r="3.5" fill="#B9A6FF"/>
       </g>
-      <circle cx="100" cy="100" r="82" fill="#18123A" stroke="#E8B44A" stroke-width="10"/>
-      <path d="M100 52 C103 90 110 97 148 100 C110 103 103 110 100 148 C97 110 90 103 52 100 C90 97 97 90 100 52 Z" fill="#F6D57E"/>
-      <circle cx="134" cy="66" r="5" fill="#B9A6FF"/>
-      <circle cx="68" cy="136" r="3.5" fill="#B9A6FF"/>
-    </svg>
-    <div>
-      <h1>Cosmium</h1>
-      <p class="tag">Decks · Collection · Card scanner · Card search · Life counter</p>
-    </div>
-  </header>
-
-  <p>Cosmium is a free app for Magic: The Gathering players, for Android
-  and Windows. It keeps your decks and your collection in one place, finds
-  cards fast, and runs your games.</p>
-
-  <div class="download">
-    <a class="button" href="windows/Cosmium-Setup.exe" download>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10 4.5v7H3zM11 4.3 21 3v8.5H11zM3 12.5h7v7l-7-1zM11 12.5h10V21l-10-1.3z"/></svg>
-      Download for Windows
-    </a>
-    <p class="muted">Windows 10 or 11, 64-bit. If Windows says <em>“Windows
-    protected your PC”</em>, choose <strong>More info → Run anyway</strong>:
-    the installer isn't signed with a paid certificate. Cosmium updates
-    itself after that.</p>
-  </div>
-
-  <div class="download">
+    </defs>
+    <use href="#logo"/>
+  </svg>
+  <h1>Your whole Magic life,<br>in one vault.</h1>
+  <p class="lead">Build decks, track every card you own, scan cards with your
+  camera, playtest, and count life at the table. Free, no ads, and no
+  account needed.</p>
+  <div class="cta">
     <a class="button" href="https://drive.usercontent.google.com/download?id=1H4XcuqVht4OXcT5dj5B5dx2ejekv6aJo&amp;export=download&amp;confirm=t">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.6 9.48 19.44 6.3a.5.5 0 0 0-.87-.5l-1.87 3.23A11.4 11.4 0 0 0 12 8.1c-1.7 0-3.3.33-4.7.93L5.43 5.8a.5.5 0 0 0-.87.5L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
       Download for Android
     </a>
-    <p class="muted">Open the downloaded
-    <strong>Cosmium.apk</strong> and allow your browser to install apps when
-    Android asks. To update, download and open it again: your decks and
-    collection stay.</p>
+    <a class="button ghost" href="windows/Cosmium-Setup.exe" download>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10 4.5v7H3zM11 4.3 21 3v8.5H11zM3 12.5h7v7l-7-1zM11 12.5h10V21l-10-1.3z"/></svg>
+      Download for Windows
+    </a>
   </div>
+  <ul class="chips">
+    <li><span class="ms">block</span>No ads</li>
+    <li><span class="ms">person_off</span>No account needed</li>
+    <li><span class="ms">sync</span>Phone and PC in sync</li>
+  </ul>
+</section>
 
-  <h2>What it does</h2>
-  <div class="panel">
-    <ul>
-      <li><strong>Card search</strong> with full filters, every printing, rulings and prices (Card Kingdom, TCGplayer, Cardmarket).</li>
-      <li><strong>Deck builder</strong> for Commander and other formats: stats, mana base help, budget swaps, EDHREC ideas, and import from Archidekt, Moxfield and text lists.</li>
-      <li><strong>Card scanner</strong>: point the camera at your cards to add them, with the right version, language and finish, to a binder, a list or a deck.</li>
-      <li><strong>Collection tracker</strong> with folders and lists, values and gains, and CSV import and export.</li>
-      <li><strong>Life tracker</strong> for 1 to 8 players: commander damage, counters, monarch, initiative and dungeons, day and night, turn timers and high rolls.</li>
-      <li><strong>Optional Google sign-in</strong> to keep your data the same on your phone and PC, with daily backups in your own Google Drive.</li>
+<main>
+  <section id="features">
+    <h2>Everything a player needs</h2>
+    <p class="sub">From the first brew to game night.</p>
+    <div class="grid">
+      <article class="feature">
+        <span class="ms icon">layers</span>
+        <h3>Deck builder</h3>
+        <p>Commander and every other format. Mana curve and color stats,
+        mana base help, draw odds, combo finder, bracket estimate and
+        budget swaps. Import from Archidekt, Moxfield or any text list.</p>
+      </article>
+      <article class="feature">
+        <span class="ms icon">photo_camera</span>
+        <h3>Card scanner</h3>
+        <p>Point your camera at your cards and they're added with the right
+        set, language and finish, straight into a binder, list or deck.</p>
+      </article>
+      <article class="feature">
+        <span class="ms icon">inventory_2</span>
+        <h3>Collection tracker</h3>
+        <p>Folders and lists, what your collection is worth and how that
+        changes over time, price drops, and CSV import and export.</p>
+      </article>
+      <article class="feature">
+        <span class="ms icon">search</span>
+        <h3>Card search</h3>
+        <p>Fast search with full filters, every printing, rulings, and
+        prices from Card Kingdom, TCGplayer and Cardmarket.</p>
+      </article>
+      <article class="feature">
+        <span class="ms icon">playing_cards</span>
+        <h3>Playtester</h3>
+        <p>Draw opening hands, mulligan and goldfish your deck. On a big
+        screen it becomes a full table: drag cards anywhere, tap,
+        and move between zones.</p>
+      </article>
+      <article class="feature">
+        <span class="ms icon">favorite</span>
+        <h3>Life tracker</h3>
+        <p>1 to 8 players with commander damage, counters, monarch,
+        initiative and dungeons, day and night, turn timers and high
+        rolls.</p>
+      </article>
+      <article class="feature">
+        <span class="ms icon">qr_code_2</span>
+        <h3>Share decks</h3>
+        <p>Send a deck as a link or QR code. Friends with Cosmium open it in
+        the app; everyone else sees the list in their browser.</p>
+      </article>
+      <article class="feature">
+        <span class="ms icon">auto_awesome</span>
+        <h3>Ideas for your decks</h3>
+        <p>Suggestions for your Commander decks from EDHREC, newest sets
+        first, and a rules lookup for any keyword.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="data" class="split">
+    <div>
+      <h2>Your data stays yours</h2>
+      <p>Everything lives on your device. Cosmium has no server, no
+      accounts of its own, no ads and no tracking.</p>
+      <p>Want your phone and PC to match? Sign in with Google and Cosmium
+      syncs through a private folder in <em>your own</em> Google Drive that
+      only Cosmium can see, with a daily backup.</p>
+      <p><a href="privacy.html">Read the privacy policy →</a></p>
+    </div>
+    <ul class="checks">
+      <li><span class="ms">check_circle</span>Works without signing in</li>
+      <li><span class="ms">check_circle</span>No ads, no analytics</li>
+      <li><span class="ms">check_circle</span>Card scans are read on your device</li>
+      <li><span class="ms">check_circle</span>Backups in your own Google Drive</li>
+      <li><span class="ms">check_circle</span>Export everything any time</li>
     </ul>
-  </div>
+  </section>
 
-  <h2>Your data</h2>
-  <p>Everything is kept on your device. Cosmium has no server, no
-  accounts of its own and no ads. If you choose to sign in with Google, your
-  data is synced through a private folder in <em>your own</em> Google Drive
-  that only Cosmium can see. Read the <a href="privacy.html">privacy
-  policy</a> for the details.</p>
+  <section id="download">
+    <h2>Get Cosmium</h2>
+    <p class="sub">Free on Android and Windows.</p>
+    <div class="grid two">
+      <article class="feature dl">
+        <span class="ms icon">phone_android</span>
+        <h3>Android</h3>
+        <p>Phones and tablets with a 64-bit processor (almost every device
+        from the last several years).</p>
+        <a class="button" href="https://drive.usercontent.google.com/download?id=1H4XcuqVht4OXcT5dj5B5dx2ejekv6aJo&amp;export=download&amp;confirm=t">Download APK</a>
+        <p class="muted">Open the downloaded <strong>Cosmium.apk</strong>
+        and allow your browser to install apps when Android asks. To update,
+        download and open it again: your decks and collection stay.</p>
+      </article>
+      <article class="feature dl">
+        <span class="ms icon">desktop_windows</span>
+        <h3>Windows</h3>
+        <p>Windows 10 or 11, 64-bit. Updates itself from inside the
+        app.</p>
+        <a class="button" href="windows/Cosmium-Setup.exe" download>Download installer</a>
+        <p class="muted">If Windows says <em>“Windows protected your
+        PC”</em>, choose <strong>More info → Run anyway</strong>: the
+        installer isn't signed with a paid certificate.</p>
+      </article>
+    </div>
+  </section>
+</main>
 
+<footer class="site">
   <nav>
     <a href="privacy.html">Privacy policy</a>
     <a href="/Nath/">Made by Nath</a>
   </nav>
+  <p>Cosmium is unofficial Fan Content permitted under the Fan Content
+  Policy. Not approved or endorsed by Wizards. Portions of the materials
+  used are property of Wizards of the Coast. ©Wizards of the Coast LLC.
+  Card data and images from Scryfall.</p>
+</footer>
 
-  <footer>
-    Cosmium is unofficial Fan Content permitted under the Fan Content
-    Policy. Not approved or endorsed by Wizards. Portions of the materials
-    used are property of Wizards of the Coast. ©Wizards of the Coast LLC.
-    Card data and images from Scryfall.
-  </footer>
-</main>
 </body>
 </html>
