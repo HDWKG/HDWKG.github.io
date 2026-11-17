@@ -26,5 +26,15 @@ h2 { font-family: Cinzel, Georgia, serif; color: var(--gilt-light); font-size: 2
 ul { padding-left: 20px; }
 li { margin: 4px 0; }
 .muted { color: var(--muted); font-size: 14px; }
+.download { margin: 24px 0 8px; }
+.download .muted { margin: 10px 0 0; }
+.button {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gilt); color: var(--night);
+  font-weight: 600; text-decoration: none;
+  padding: 12px 22px; border-radius: 12px;
+}
+.button:hover { background: var(--gilt-light); color: var(--night); }
+.button svg { width: 20px; height: 20px; fill: currentColor; }
 nav { margin-top: 40px; display: flex; gap: 18px; flex-wrap: wrap; }
 footer { margin-top: 48px; color: var(--muted); font-size: 13px; }
