@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cosmium deck</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .deck-head h1 { font-size: 30px; overflow-wrap: anywhere; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 8px; }
+  .button.secondary { background: transparent; color: var(--gilt); border: 1px solid var(--gilt); }
+  .button.secondary:hover { background: rgba(232, 180, 74, 0.12); color: var(--gilt-light); }
+  .zone { margin-top: 22px; }
+  .zone h2 { margin: 0 0 6px; display: flex; justify-content: space-between; align-items: baseline; }
+  .zone h2 span { font-family: Inter, system-ui, sans-serif; font-size: 14px; color: var(--muted); }
+  .cards { list-style: none; padding: 0; margin: 0; columns: 2 260px; column-gap: 28px; }
+  .cards li { break-inside: avoid; display: flex; gap: 10px; padding: 3px 0; border-bottom: 1px solid #2a2350; }
+  .cards .qty { color: var(--muted); min-width: 1.6em; text-align: right; font-variant-numeric: tabular-nums; }
+  .cards a { color: var(--parchment); text-decoration: none; }
+  .cards a:hover { color: var(--gilt-light); text-decoration: underline; }
+  .cards .print { color: var(--muted); font-size: 13px; margin-left: auto; white-space: nowrap; }
+  #error { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <div id="deck" hidden>
+    <div class="deck-head">
+      <p class="tag" id="format"></p>
+      <h1 id="name"></h1>
+      <p class="muted" id="count"></p>
+    </div>
+    <div class="actions">
+      <a class="button" id="open" href="#">Open in Cosmium</a>
+      <button class="button secondary" id="copy" type="button">Copy decklist</button>
+      <a class="button secondary" href="../">Get Cosmium</a>
+    </div>
+    <p class="muted" id="copied" hidden>Decklist copied. Paste it into Import deck in Cosmium, Moxfield, Archidekt or MTG Arena.</p>
+    <div id="zones"></div>
+  </div>
+  <div id="error" class="panel">
+    <h1>No deck here</h1>
+    <p>This link doesn't hold a deck, or it was cut short when it was sent.
+      Ask for the link again, or get <a href="../">Cosmium</a>.</p>
+  </div>
+</main>
+<script>
+(async function () {
+  // The deck is packed into the part after "#": "1." + base64url(gzip(text)).
+  // Browsers never send that part to the server.
+  const hash = location.hash.slice(1);
+  const m = /^(\d+)\.([A-Za-z0-9_-]+)$/.exec(hash);
+  function fail() { document.getElementById('error').style.display = 'block'; }
+  if (!m || m[1] !== '1' || typeof DecompressionStream === 'undefined') { fail(); return; }
+  let text;
+  try {
+    let b64 = m[2].replace(/-/g, '+').replace(/_/g, '/');
+    while (b64.length % 4) b64 += '=';
+    const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+    const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+    text = await new Response(stream).text();
+  } catch (e) { fail(); return; }
+
+  const lines = text.split('\n');
+  const name = lines[0] || 'Deck';
+  const format = lines[1] || '';
+  const body = lines.slice(2);
+  const headings = { Commander: 'Commander', Deck: 'Deck', Sideboard: 'Sideboard', Maybeboard: 'Maybeboard' };
+  const zones = [];
+  let zone = null;
+  for (const raw of body) {
+    const line = raw.trim();
+    if (!line) continue;
+    if (headings[line]) { zone = { title: line, cards: [] }; zones.push(zone); continue; }
+    const c = /^(\d+)\s+(.+?)(?:\s+\(([A-Za-z0-9]+)\)\s+(\S+))?(?:\s+\*([FE])\*)?$/.exec(line);
+    if (!c) continue;
+    if (!zone) { zone = { title: 'Deck', cards: [] }; zones.push(zone); }
+    zone.cards.push({ qty: +c[1], name: c[2], set: c[3], num: c[4], foil: c[5] });
+  }
+
+  document.title = name + ' · Cosmium deck';
+  document.getElementById('name').textContent = name;
+  document.getElementById('format').textContent = format;
+  const main = zones.filter(z => z.title === 'Commander' || z.title === 'Deck')
+    .reduce((s, z) => s + z.cards.reduce((t, c) => t + c.qty, 0), 0);
+  document.getElementById('count').textContent = main + ' cards';
+  document.getElementById('open').href = 'cosmium://deck#' + hash;
+
+  const root = document.getElementById('zones');
+  for (const z of zones) {
+    const sec = document.createElement('section');
+    sec.className = 'zone';
+    const h = document.createElement('h2');
+    h.textContent = z.title;
+    const n = document.createElement('span');
+    n.textContent = z.cards.reduce((t, c) => t + c.qty, 0);
+    h.appendChild(n);
+    sec.appendChild(h);
+    const ul = document.createElement('ul');
+    ul.className = 'cards';
+    for (const c of z.cards) {
+      const li = document.createElement('li');
+      const q = document.createElement('span');
+      q.className = 'qty';
+      q.textContent = c.qty;
+      const a = document.createElement('a');
+      a.textContent = c.name;
+      a.href = c.set && c.num
+        ? 'https://scryfall.com/card/' + encodeURIComponent(c.set.toLowerCase()) + '/' + encodeURIComponent(c.num)
+        : 'https://scryfall.com/search?q=' + encodeURIComponent('!"' + c.name + '"');
+      a.target = '_blank';
+      a.rel = 'noopener';
+      li.append(q, a);
+      if (c.set) {
+        const p = document.createElement('span');
+        p.className = 'print';
+        p.textContent = c.set + ' ' + c.num + (c.foil === 'F' ? ' · foil' : c.foil === 'E' ? ' · etched' : '');
+        li.appendChild(p);
+      }
+      ul.appendChild(li);
+    }
+    sec.appendChild(ul);
+    root.appendChild(sec);
+  }
+
+  document.getElementById('copy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(body.join('\n').trim());
+      document.getElementById('copied').hidden = false;
+    } catch (e) {}
+  });
+  document.getElementById('deck').hidden = false;
+})();
+</script>
+</body>
+</html>

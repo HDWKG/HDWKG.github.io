@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.hdwkg.cosmium",
+      "sha256_cert_fingerprints": [
+        "1B:99:B3:E4:60:A6:A5:2C:AE:F9:34:84:96:15:F6:45:F7:21:ED:9C:3D:F7:8C:08:26:6B:9A:E1:D9:0D:7D:D5"
+      ]
+    }
+  }
+]
