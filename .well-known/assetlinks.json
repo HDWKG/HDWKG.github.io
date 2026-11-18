@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.hdwkg.cosmium",
       "sha256_cert_fingerprints": [
-        "1B:99:B3:E4:60:A6:A5:2C:AE:F9:34:84:96:15:F6:45:F7:21:ED:9C:3D:F7:8C:08:26:6B:9A:E1:D9:0D:7D:D5"
+        "1B:99:B3:E4:60:A6:A5:2C:AE:F9:34:84:96:15:F6:45:F7:21:ED:9C:3D:F7:8C:08:26:6B:9A:E1:D9:0D:7D:D5",
+        "21:B3:E5:81:76:62:C1:74:E9:C2:72:CD:EA:3D:27:2E:AB:64:22:0E:F9:C6:0E:9C:4B:F5:28:B1:32:6E:DD:7A"
       ]
     }
   }
