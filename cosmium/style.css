@@ -150,3 +150,23 @@ footer.site nav { margin: 0 0 12px; }
   .phone { flex: 0 0 62%; scroll-snap-align: center; }
   .phone.side { transform: none; opacity: 1; }
 }
+
+/* FAQ: questions that open in place. */
+.faq { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+.faq details {
+  background: linear-gradient(180deg, #1d1645, var(--card)); border: 1px solid var(--line);
+  border-radius: 14px; padding: 0 20px;
+}
+.faq details[open] { border-color: #5a4c94; }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 16px 28px 16px 0; position: relative;
+  font-weight: 600; color: var(--parchment);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; position: absolute; right: 0; top: 12px;
+  color: var(--gilt); font-size: 22px; line-height: 1.4;
+}
+.faq details[open] summary::after { content: "−"; }
+.faq summary:focus-visible { outline: 2px solid var(--gilt); outline-offset: 4px; border-radius: 6px; }
+.faq details p { color: #d8cfee; margin: 0 0 14px; }
